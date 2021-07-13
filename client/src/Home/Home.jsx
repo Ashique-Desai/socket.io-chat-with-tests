@@ -1,12 +1,29 @@
 import React from "react";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import "./Home.css";
 
-function Home() {
-    return(
-        <div>Home</div>
-    )
-}
+const Home = () => {
+  const [roomName, setRoomName] = React.useState("");
 
-export default Home
+  const handleRoomNameChange = (event) => {
+    setRoomName(event.target.value);
+  };
+
+  return (
+    <div className="home-container">
+      <input
+        type="text"
+        placeholder="Room"
+        value={roomName}
+        onChange={handleRoomNameChange}
+        className="text-input-field"
+      />
+      <Link data-testid="route-home" to={`/${roomName}`} className="enter-room-button">
+        Join room
+      </Link>
+    </div>
+  );
+};
+
+export default Home;
